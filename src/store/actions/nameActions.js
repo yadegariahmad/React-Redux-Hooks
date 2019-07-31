@@ -1,11 +1,11 @@
 import { UPDATE_NAME } from '../actionTypes';
 
-const UpdateName = (dispatch, name) =>
+const UpdateName = (name) =>
 {
-  dispatch({
+  return {
     type: UPDATE_NAME,
     payload: name
-  });
+  };
 };
 
 export default {

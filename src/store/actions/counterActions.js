@@ -1,17 +1,17 @@
 import { INCREMENT_COUNT, DECREMENT_COUNT } from '../actionTypes';
 
-const Increment = (dispatch) =>
+const Increment = () =>
 {
-  dispatch({
+  return {
     type: INCREMENT_COUNT
-  });
+  };
 };
 
-const Decrement = (dispatch) =>
+const Decrement = () =>
 {
-  dispatch({
+  return {
     type: DECREMENT_COUNT
-  });
+  };
 };
 
 export default {

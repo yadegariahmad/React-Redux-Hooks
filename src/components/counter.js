@@ -1,20 +1,19 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import counterActions from '../store/actions/counterActions';
 
-const Counter = () =>
+const Counter = ({ increment, decrement }) =>
 {
   const { count, name } = useSelector(state => ({
     ...state.counter,
     ...state.name
   }));
-  const dispatch = useDispatch();
 
   return (
     <>
       <h2>Counter: {count}</h2>
-      <button onClick={() => { counterActions.Increment(dispatch) }}>+</button>
-      <button onClick={() => { counterActions.Decrement(dispatch) }}>-</button>
+      <button onClick={() => { increment() }}>+</button>
+      <button onClick={() => { decrement() }}>-</button>
       <div>
         <h3>Your name is: {name}</h3>
       </div>
@@ -22,4 +21,16 @@ const Counter = () =>
   );
 }
 
-export default Counter;
+const mapDispatchToProps = dispatch => ({
+  increment: () =>
+  {
+    dispatch(counterActions.Increment());
+  },
+  decrement: () =>
+  {
+    dispatch(counterActions.Decrement());
+  },
+});
+
+
+export default connect(null, mapDispatchToProps)(Counter);
