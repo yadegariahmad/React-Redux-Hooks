@@ -1,13 +1,17 @@
 import React from 'react';
-import { connect, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import counterActions from '../store/actions/counterActions';
 
-const Counter = ({ increment, decrement }) =>
+const Counter = () =>
 {
   const { count, name } = useSelector(state => ({
     ...state.counter,
     ...state.name
   }));
+
+  const dispatch = useDispatch();
+  const increment = () => dispatch(counterActions.Increment())
+  const decrement = () => dispatch(counterActions.Decrement())
 
   return (
     <>
@@ -21,16 +25,4 @@ const Counter = ({ increment, decrement }) =>
   );
 }
 
-const mapDispatchToProps = dispatch => ({
-  increment: () =>
-  {
-    dispatch(counterActions.Increment());
-  },
-  decrement: () =>
-  {
-    dispatch(counterActions.Decrement());
-  },
-});
-
-
-export default connect(null, mapDispatchToProps)(Counter);
+export default Counter;

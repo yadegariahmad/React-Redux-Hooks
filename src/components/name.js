@@ -1,9 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import nameActions from '../store/actions/nameActions';
 
-const Name = ({ updateName }) =>
+const Name = () =>
 {
+  const dispatch = useDispatch();
+  const updateName = (name) => dispatch(nameActions.UpdateName(name))
+
   return (
     <div>
       <input placeholder="Input your name" onChange={(e) => { updateName(e.target.value) }} />
@@ -11,13 +14,4 @@ const Name = ({ updateName }) =>
   );
 }
 
-const mapDispatchToProps = dispatch =>
-  ({
-    updateName: (name) =>
-    {
-      dispatch(nameActions.UpdateName(name));
-    },
-  });
-
-
-export default connect(null, mapDispatchToProps)(Name);
+export default Name;
